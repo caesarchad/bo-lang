@@ -7,7 +7,7 @@
 # Stage 1. Check out LLVM source code and run the build
 
 # From google container registry get the latest builder 
-FROM launcher.gcr.io/google/ubuntu1804:latest as builder
+FROM launcher.gcr.io/google/debian8:latest as builder
 LABEL maintainer "Bitconch Dev-team"
 
 # Install build dependencies of llvm.
@@ -83,7 +83,7 @@ RUN mkdir /llvm/build && \
     
 
 # Produce stage 2 docker with just the peices needed
-FROM launcher.gcr.io/google/ubuntu1804:latest
+FROM launcher.gcr.io/google/debian8:latest
 LABEL maintainer "Bitconch Dev-team"
 COPY --from=builder version.md /usr/local
 COPY --from=builder llvm/build/bin /usr/local/bin
